@@ -35,8 +35,8 @@ $(document).ready(function () {
             data: { shortLink: _payload }
         }).done((msg) => {
             console.log(msg);
-            if(!msg.error && msg.message.nLink){
-                window.location = FrontRoot + msg.message.nLink;
+            if(!msg.error){
+                window.location = FrontRoot + msg.message.oLink;
             }
         });
     }
@@ -51,7 +51,7 @@ $(document).ready(function () {
                 data: { auth: "pms", link: UserInput.val() }
             }).done((msg) => {
                 console.log(msg);
-                if (msg.error == "false") {
+                if (!msg.error) {
                     UserInput.val(msg.link.replace("https://", "http://"));
                 } else {
                     UserInput.val(msg.shortened | msg.message);
