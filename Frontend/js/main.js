@@ -40,6 +40,7 @@ $(document).ready(function () {
             }
 
             if(msg.error){
+                console.log(msg.shortened);
                 if(msg.shortened && msg.link){
                     UserInput.val(msg.shortened);
                 }else{
