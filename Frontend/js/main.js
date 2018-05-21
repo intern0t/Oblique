@@ -42,6 +42,8 @@ $(document).ready(function () {
             if(msg.error){
                 if(msg.shortened && msg.link){
                     UserInput.val(msg.shortened);
+                }else{
+                    UserInput.val(msg.message);
                 }
             }
         });
