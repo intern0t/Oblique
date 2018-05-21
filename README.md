@@ -1,2 +1,3 @@
-# Oblique
-Oblique is a URL shortening service written in NodeJS and Javascript to make the call to the API endpoint, includes both Frontend &amp; the backend.
+# oblique
+
+URL Shortener that makes use of Google Spreadsheet to store &amp; search for saved URLs.
