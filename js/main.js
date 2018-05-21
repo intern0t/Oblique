@@ -35,7 +35,7 @@ $(document).ready(function () {
             data: { shortLink: _payload }
         }).done((msg) => {
             console.log(msg);
-            if(msg.error != true){
+            if(!msg.error){
                 window.location = msg.message.oLink;
             }else{
                 if(msg.shortened){
