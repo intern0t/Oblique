@@ -36,7 +36,7 @@ $(document).ready(function () {
         }).done((msg) => {
             console.log(msg);
             if(msg.error == "false"){
-                window.location = FrontRoot + msg.message.oLink;
+                window.location = msg.message.oLink;
             }
         });
     }
