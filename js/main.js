@@ -15,6 +15,7 @@ $(document).ready(function () {
                 dataType: 'json',
                 data: { auth: "pms", link: UserInput.val() }
             }).done(function (msg) {
+                console.log(msg);
                 if(msg.error !== "false"){
                     UserInput.val(msg.link.replace("https://", "http://"));
                 }else{
