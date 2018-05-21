@@ -72,6 +72,14 @@ $(document).ready(function () {
         return false;
     });
 
+    $("a.funcCopy").on('click', function(event){
+        event.preventDefault();
+        UserInput.focus(() => {
+            $(this).select();
+        });
+        return false;
+    });
+
     $("a.funcClear").on('click', function (event) {
         event.preventDefault();
         UserInput.val('');
