@@ -63,8 +63,7 @@ $(document).ready(function () {
                 if (!msg.error) {
                     UserInput.val(msg.link.replace("https://", "http://"));
                 } else {
-                    UserInput.val(msg.shortened | msg.message);
-                    console.log(msg.shortened);
+                    UserInput.val(msg.shortened);
                 }
             });
         } else {
