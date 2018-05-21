@@ -16,14 +16,10 @@ $(document).ready(function () {
                 data: { auth: "pms", link: UserInput.val() }
             }).done(function (msg) {
                 console.log(msg);
-                if(msg.error !== "false"){
+                if(msg.error == "false"){
                     UserInput.val(msg.link.replace("https://", "http://"));
                 }else{
-                    if(msg.shortened){
-                        UserInput.val(msg.shortened);
-                    }else{
-                        UserInput.val(msg.message);
-                    }
+                    UserInput.val(msg.shortened | msg.message);
                 }
             });
         } else {
