@@ -19,7 +19,11 @@ $(document).ready(function () {
                 if(msg.error !== "false"){
                     UserInput.val(msg.link.replace("https://", "http://"));
                 }else{
-                    UserInput.val("Error..");
+                    if(msg.shortened){
+                        UserInput.val(msg.shortened);
+                    }else{
+                        UserInput.val(msg.message);
+                    }
                 }
             });
         } else {
