@@ -16,18 +16,19 @@ var Express = require('express')
     , FileSync = require('lowdb/adapters/FileSync')
     , adapter = new FileSync('storage/oblique.json')
     , database = lowdb(adapter)
-    , PORT = process.env.PORT || 1337;
+    , PORT = process.env.PORT || 443;
 
 // Enabling CORS in our Express module.
-var allowedDomains = ["http://prashant.me", "https://prashant.me"];
+var allowedDomains = ["http://o.prashant.me", "https://o.prashant.me"];
 var corsOptions = {
     origin: (origin, callback) => {
-        if(allowedDomains.indexOf(origin) !== -1){
+        if (allowedDomains.indexOf(origin) !== -1) {
             callback(null, true);
-        }else{
+        } else {
             callback(new Error("Not allowed by CORS."));
         }
     },
+    methods: ['GET', 'POST'],
     optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -41,12 +42,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * Domain: s.prashant.me/
  */
 const passKey = "pms";
-const domain = "https://s.prashant.me/";
+const domain = "http://o.prashant.me/#!";
 
 /**
  * Set Database defaults.
  */
-database.defaults({ links:[], count:0 }).write();
+database.defaults({ links: [], count: 0 }).write();
 
 /**
  * Generates two random strings - adjectives + noun, just to give our memory a bit of a twist.
@@ -68,7 +69,7 @@ var generateLink = () => {
                     return withResponse + _response.trim();
                 });
             }).catch((err) => {
-                
+
             });
     });
 }
@@ -84,10 +85,11 @@ var checkDuplicates = (longLink) => {
 app.get('/', (req, res) => {
     return Promise.try(() => {
         res.json({
-            error: false, 
-            message: "Welcome to the backend of Project Oblique!", 
+            error: false,
+            message: "Welcome to the backend of Project Oblique!",
             description: "Project Oblique uses LowDB, Express and Promises to shorten long links. Feel free to use it, it's no problem.",
-            retention: "All the shortened links are cleared at the end of the month. Reason: Just for fun and to save my storage."
+            retention: "All the shortened links are cleared at the end of the month. Reason: Just for fun and to save my storage.",
+            developer: "Prashant Shrestha"
         });
     });
 });
@@ -95,24 +97,24 @@ app.get('/', (req, res) => {
 // Create a new entry.
 app.use('/create', (req, res, next) => {
     return Promise.try(() => {
-        if(!req.body.auth || !req.body.link){
+        if (!req.body.auth || !req.body.link) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }).then((isProvided) => {
-        if(isProvided){
+        if (isProvided) {
             // Not need to check for users because passkey is provided.
             // Simply check and verify the passkey.
-            if(req.body.auth == passKey){
+            if (req.body.auth == passKey) {
                 next();
-            }else{
+            } else {
                 res.json({
                     error: true,
                     message: "The authorization key you provided does not match!"
                 });
             }
-        }else{
+        } else {
             res.json({
                 error: true,
                 message: "Please provide all the required authentication details."
@@ -126,10 +128,10 @@ app.post('/create', (req, res) => {
         // Before generating, check if an entry with same link already exists.
         var dbQuery = database.get("links").find({ oLink: req.body.link }).value();
 
-        if(!dbQuery){
+        if (!dbQuery) {
             var linkParam = generateLink();
             return linkParam;
-        }else{
+        } else {
             // Get the data and let the user know that link already exists.
             res.json({
                 error: true,
@@ -137,7 +139,7 @@ app.post('/create', (req, res) => {
                 link: req.body.link,
                 shortened: domain + dbQuery.nLink
             });
-            
+
             throw new Error("Link already exists!");
         }
     }).then((link) => {
@@ -148,15 +150,15 @@ app.post('/create', (req, res) => {
         };
         return newEntry;
     }).then((parsedData) => {
-        if(!parsedData){
+        if (!parsedData) {
             res.json({
                 error: true,
                 message: "There was a problem in parsedData variable!"
             });
-        }else{
+        } else {
             var dbQuery = database.get("links").push(parsedData).write();
- 
-            if(dbQuery){
+
+            if (dbQuery) {
                 dbQuery = database.get("links").find({ oLink: req.body.link }).value();
 
                 res.json({
@@ -164,8 +166,8 @@ app.post('/create', (req, res) => {
                     link: domain + dbQuery.nLink
                 });
                 // Update the count.
-                database.update("count", n => n+1).write();
-            }else{
+                database.update("count", n => n + 1).write();
+            } else {
                 res.json("Problem");
             }
         }
@@ -179,9 +181,9 @@ app.post('/create', (req, res) => {
  */
 app.use('/find', (req, res, next) => {
     return Promise.try(() => {
-        if(!req.body.shortLink){
-            res.json({error: true, message: "Please provide the short link!"});
-        }else{
+        if (!req.body.shortLink) {
+            res.json({ error: true, message: "Please provide the short link!" });
+        } else {
             next();
         }
     });
@@ -191,10 +193,10 @@ app.post('/find', (req, res) => {
     return Promise.try(() => {
         var dbQuery = database.get("links").find({ nLink: req.body.shortLink }).value();
 
-        if(!dbQuery){
-            res.json({error: true, message: "Could not find any short links with the provided short code."});
-        }else{
-            res.json({error: false, message: dbQuery});
+        if (!dbQuery) {
+            res.json({ error: true, message: "Could not find any short links with the provided short code." });
+        } else {
+            res.json({ error: false, message: dbQuery });
         }
     });
 });
