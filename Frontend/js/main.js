@@ -1,24 +1,59 @@
 $(document).ready(function () {
     const UserInput = $(".userInput");
+    const APIRoot = "http://obliquebackend.openode.io/";
+    const FrontRoot = "http://o.prashant.me/#!"
 
     function isUrl(s) {
         var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
         return regexp.test(s);
     }
 
+    var _payload;
+    var getURLParamters = () => {
+        const url = document.location.href;
+        var payload;
+
+        if (url.includes("#!")) {
+            // Payload available.
+            payload = url.split("#!")[1];
+            _payload = payload;
+            console.log("Payload => ", payload);
+        } else {
+            // No payload provided.
+            payload = false;
+        }
+
+        return payload;
+    }
+
+    // Check for payload
+    if (getURLParamters()) {
+        $.ajax({
+            url: APIRoot + "find",
+            method: "POST",
+            dataType: "json",
+            data: { shortLink: _payload }
+        }).done((msg) => {
+            console.log(msg);
+            if(!msg.error && msg.message.nLink){
+                window.location = FrontRoot + msg.message.nLink;
+            }
+        });
+    }
+
     $("a.funcShorten").on('click', function (event) {
         event.preventDefault();
         if (UserInput.val().length > 0 && isUrl(UserInput.val())) {
             $.ajax({
-                url: "http://obliquebackend.openode.io/create",
+                url: APIRoot + "create",
                 method: "POST",
                 dataType: 'json',
                 data: { auth: "pms", link: UserInput.val() }
-            }).done(function (msg) {
+            }).done((msg) => {
                 console.log(msg);
-                if(msg.error == "false"){
+                if (msg.error == "false") {
                     UserInput.val(msg.link.replace("https://", "http://"));
-                }else{
+                } else {
                     UserInput.val(msg.shortened | msg.message);
                 }
             });
