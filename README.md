@@ -1,6 +1,6 @@
-# oblique
+# Oblique
 
-URL Shortener that makes use of Google Spreadsheet to store &amp; search for saved URLs.
+URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 
 # Frontend
  >Under development, still planning. 
