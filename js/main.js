@@ -37,6 +37,10 @@ $(document).ready(function () {
             console.log(msg);
             if(msg.error != true){
                 window.location = msg.message.oLink;
+            }else{
+                if(msg.shortened){
+                    UserInput.val(msg.shortened);
+                }
             }
         });
     }
