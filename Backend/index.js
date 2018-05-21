@@ -7,15 +7,30 @@
 
 var Express = require('express')
     , app = Express()
+    , cors = require('cors')
     , request = require('request-promise')
     , Promise = require('bluebird')
     , bodyParser = require('body-parser')
     , fs = require('fs')
     , lowdb = require('lowdb')
     , FileSync = require('lowdb/adapters/FileSync')
-    , adapter = new FileSync('oblique.json')
+    , adapter = new FileSync('storage/oblique.json')
     , database = lowdb(adapter)
     , PORT = process.env.PORT || 1337;
+
+// Enabling CORS in our Express module.
+var allowedDomains = ["http://prashant.me", "https://prashant.me"];
+var corsOptions = {
+    origin: (origin, callback) => {
+        if(allowedDomains.indexOf(origin) !== -1){
+            callback(null, true);
+        }else{
+            callback(new Error("Not allowed by CORS."));
+        }
+    },
+    optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Enabling POST data transfer.
 app.use(bodyParser.json());
@@ -52,6 +67,8 @@ var generateLink = () => {
                 return request(apiLinks["noun"]).then((_response) => {
                     return withResponse + _response.trim();
                 });
+            }).catch((err) => {
+                
             });
     });
 }
@@ -117,7 +134,8 @@ app.post('/create', (req, res) => {
             res.json({
                 error: true,
                 message: "The link you provided already has a shortened link.",
-                link: domain + dbQuery.nLink
+                link: req.body.link,
+                shortened: domain + dbQuery.nLink
             });
             
             throw new Error("Link already exists!");
@@ -152,8 +170,7 @@ app.post('/create', (req, res) => {
             }
         }
     }).catch((err) => {
-        console.log(err.message);       
-        // res.json(err.message);
+        console.log(err.message);
     });
 });
 

@@ -10,15 +10,16 @@ URL Shortener that makes use of Google Spreadsheet to store &amp; search for sav
 >Let me use the term `BACKEND` to denote the server's root domain.
 
 * **POST** - `BACKEND/create`
-    > link = string (long URL)
+    > `link` = string (long URL)
 
-    > auth = string (`pms` by default for now)
+    > `auth` = string (`pms` by default for now)
 * **POST** - `BACKEND/find` 
-    > shortLink = string (shortened URL id) 
+    > `shortLink` = string (shortened URL id) 
 * **POST** - `BACKEND/clear` *(Not quite sure if I want to implement it)*
-    > auth = string (admin key to clear the database) 
+    > `auth` = string (admin key to clear the database) 
 
 
 ### Modules Used
 1. [LowDB](https://www.npmjs.com/package/lowdb)
 2. [Bluebird Promise](http://bluebirdjs.com)
+3. [Openode](https://openode.io) for hosting the backend.
