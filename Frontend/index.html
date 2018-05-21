@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>Oblique!</title>
-		<link rel="stylesheet" href="css/main.css" type="text/css" />
-	</head>
-	<body>
-		<div class="container">
-			<form class="">
-				<input type
-			</form>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./css/main.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<title>Oblique</title>
+</head>
+
+<body>
+	<section class="hero is-light is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<form>
+					<div class="field">
+						<label class="label">
+							<span class="icon">
+								<i class="far fa-hand-scissors" aria-hidden="true"></i>
+							</span> Oblique</label>
+						<div class="control has-icons-left">
+							<input class="input userInput" type="text" placeholder="Please enter your long URL that you wish to shorten ..">
+							<span class="icon is-small is-left">
+								<i class="fas fa-link"></i>
+							</span>
+						</div>
+						<p class="help">
+							<a href="https://github.com/intern0t/Oblique" target="_blank">
+								<b>Project Oblique</b>
+							</a> developed for private usage however, as the users grew,
+							<a href="https://prashant.me" target="_blank">
+								<b>I</b>
+							</a> decided to make it public.</p>
+					</div>
+					<div class="level">
+						<div class="level-left">
+							<div class="field is-grouped is-grouped-left">
+								<p class="control has-icons-left">
+									<a class="social twitter">
+										<i class="fab fa-twitter"></i>
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="social github">
+										<i class="fab fa-github-alt"></i>
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="social share">
+										<i class="fas fa-bullhorn"></i>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="field is-grouped is-grouped-right">
+								<p class="control has-icons-left">
+									<a class="funcShorten button is-primary">
+										<i class="fas fa-cut"></i> &nbsp;Shorten
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="funcCopy button is-light">
+										<i class="fas fa-clipboard-list"></i> &nbsp;Copy
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="funcClear button is-light">
+										<i class="fas fa-eraser"></i> &nbsp;Clear
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
-		<!-- Including Scripts -->
-		
-	</body>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	    crossorigin="anonymous"></script>
+	<script src="./js/main.js"></script>
+</body>
+
 </html>
