@@ -35,7 +35,7 @@ $(document).ready(function () {
             data: { shortLink: _payload }
         }).done((msg) => {
             console.log(msg);
-            if(!msg.error){
+            if(msg.error == "false"){
                 window.location = FrontRoot + msg.message.oLink;
             }
         });
