@@ -3,10 +3,13 @@
 URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 
 # Frontend
- >Under development, still planning. 
+- [ ] Copy function, let's try DOM way but [ClipboardJS](https://clipboardjs.com/) is the last resort.
+    - [ ] Add Copy button next to the `userInput` field.
+- [x] Add favicon.
 
-### Framework Used
-1. [BulmaCSS]()
+### Third-party used
+1. [BulmaCSS](https://bulma.io/)
+2. [Icons8](https://icons8.com/) for [favicon](https://icons8.com/icon/43015/cut).
 
 # Backend
 ##### Endpoints
@@ -21,11 +24,13 @@ URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 * **POST** - `BACKEND/clear` *(Not quite sure if I want to implement it)*
     > `auth` = string (admin key to clear the database) 
 
-
 ### Modules Used
 1. [LowDB](https://www.npmjs.com/package/lowdb)
 2. [Bluebird Promise](http://bluebirdjs.com)
 3. [Openode](https://openode.io) for hosting the backend.
+
+### Thanks to
+1. [Random Words API](https://nlp.fi.muni.cz/projekty/random_word/)
 
 ***
 
