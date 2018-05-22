@@ -3,13 +3,14 @@
 URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 
 # Frontend
-- [ ] Copy function, let's try DOM way but [ClipboardJS](https://clipboardjs.com/) is the last resort.
-    - [ ] Add Copy button next to the `userInput` field.
+- [x] Copy function, let's try DOM way but [ClipboardJS](https://clipboardjs.com/) is the last resort.
+    - [x] Add Copy button next to the `userInput` field.
 - [x] Add favicon.
 
 ### Third-party used
 1. [BulmaCSS](https://bulma.io/)
-2. [Icons8](https://icons8.com/) for [favicon](https://icons8.com/icon/43015/cut).
+2. [ClipboardJS](https://clipboardjs.com)
+3. [Icons8](https://icons8.com/) for [favicon](https://icons8.com/icon/43015/cut).
 
 # Backend
 ##### Endpoints
