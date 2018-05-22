@@ -3,6 +3,8 @@ $(document).ready(function () {
     const APIRoot = "http://obliquebackend.openode.io/";
     const FrontRoot = "http://o.prashant.me/#!"
 
+    new ClipboardJS(".funcCopy");
+
     function isUrl(s) {
         var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
         return regexp.test(s);
@@ -72,13 +74,13 @@ $(document).ready(function () {
         return false;
     });
 
-    $("a.funcCopy").on('click', function(event){
-        event.preventDefault();
-        UserInput.focus(() => {
-            $(this).select();
-        });
-        return false;
-    });
+    // $("a.funcCopy").on('click', function(event){
+    //     event.preventDefault();
+    //     UserInput.focus(() => {
+    //         $(this).select();
+    //     });
+    //     return false;
+    // });
 
     $("a.funcClear").on('click', function (event) {
         event.preventDefault();
