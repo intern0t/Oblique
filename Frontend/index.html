@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="./css/main.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 	<title>Project Oblique (c) 2018</title>
-	<link rel="shortcut icon" href="icons8-cut-40.png">
+	<link rel="shortcut icon" href="images/icons8-cut-40.png">
 </head>
 
 <body>
@@ -24,7 +24,11 @@
 							<a href="http://o.prashant.me">Project Oblique</a>
 						</label>
 						<div class="control has-icons-left">
-							<input class="input userInput" type="text" placeholder="Please enter your long URL that you wish to shorten .." autofocus>
+							<input 
+							class="input userInput" 
+							type="text" 
+							placeholder="Please enter your long URL that you wish to shorten .." 
+							autofocus>
 							<span class="icon is-small is-left">
 								<i class="fas fa-link"></i>
 							</span>
@@ -60,7 +64,9 @@
 									</a>
 								</p>
 								<p class="control has-icons-left">
-									<a class="funcCopy button is-light">
+									<a class="funcCopy button is-light" 
+									data-clipboard-action="copy" 
+									data-clipboard-target=".userInput">
 										<i class="fas fa-clipboard-list"></i> &nbsp;Copy
 									</a>
 								</p>
@@ -82,7 +88,7 @@
 									<a href="https://bulma.io/" target="_blank">BulmaCSS</a>,
 									<a href="https://nodejs.org/en/" target="_blank">NodeJS (Backend)</a>,
 									<a href="https://github.com/typicode/lowdb" target="_blank">LowDB</a>,
-									<a href="https://openode.io/" target="_blank">Openode</a>  &
+									<a href="https://openode.io/" target="_blank">Openode</a> &
 									<a href="https://netlify.com/" target="_blank">Netlify</a>.
 								</center>
 							</p>
@@ -95,6 +101,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	    crossorigin="anonymous"></script>
 	<script src="./js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 </body>
 
 </html>

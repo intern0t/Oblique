@@ -77,4 +77,13 @@ $(document).ready(function () {
         UserInput.val('');
         return false;
     });
+
+    // Copy functionality
+    // $("a.funcCopy").on('click', function(event){
+    //     event.preventDefault();
+    //     var clipboard = new ClipboardJS($(this));
+
+
+    //     return false;
+    // })
 });
