@@ -50,6 +50,17 @@ $(document).ready(function () {
         });
     }
 
+    var TotalLinks = () => {
+        $.ajax({
+            url: APIRoot + "count",
+            method: "GET"
+        }).done((resp) => {
+            console.log(resp);
+        });
+    };
+
+    TotalLinks();
+
     $("a.funcShorten").on('click', function (event) {
         event.preventDefault();
         if (UserInput.val().length > 0 && isUrl(UserInput.val())) {

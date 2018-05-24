@@ -201,6 +201,21 @@ app.post('/find', (req, res) => {
     });
 });
 
+/**
+ * Get total links in our database.
+ */
+app.get('/count', (req, res) => {
+    return Promise.try(() => {
+        var dbQuery = database.get("count").value();
+
+        if (!dbQuery) {
+            res.json({ error: true, message: "There was a problem retrieving total URL count." });
+        } else {
+            res.json({ error: false, message: dbQuery });
+        }
+    });
+});
+
 // Listen at the specified port.
 app.listen(PORT, () => {
     console.log("Listening at *:", PORT);
