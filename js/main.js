@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const UserInput = $(".userInput");
-    const APIRoot = "http://obliquebackend.openode.io/";
+    const APIRoot = "http://109.236.83.48:443/";
     const FrontRoot = "http://o.prashant.me/#!"
 
     new ClipboardJS(".funcCopy");
