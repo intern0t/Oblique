@@ -8,6 +8,7 @@
 var Express = require('express')
     , app = Express()
     , cors = require('cors')
+    , https = require('https')
     , request = require('request-promise')
     , Promise = require('bluebird')
     , bodyParser = require('body-parser')
@@ -16,7 +17,7 @@ var Express = require('express')
     , FileSync = require('lowdb/adapters/FileSync')
     , adapter = new FileSync('storage/oblique.json')
     , database = lowdb(adapter)
-    , PORT = process.env.PORT || 443;
+    , PORT = process.env.PORT || 1338;
 
 // Enabling CORS in our Express module.
 var allowedDomains = ["http://o.prashant.me", "https://o.prashant.me"];
@@ -32,6 +33,12 @@ var corsOptions = {
     optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+// For HTTPS
+const options = {
+    key: fs.readFileSync("cert/my-key.pem"),
+    cert: fs.readFileSync("cert/chain.pem")
+};
 
 // Enabling POST data transfer.
 app.use(bodyParser.json());
@@ -220,3 +227,6 @@ app.get('/count', (req, res) => {
 app.listen(PORT, () => {
     console.log("Listening at *:", PORT);
 });
+
+// Listen at SSL port.
+https.createServer(options, app).listen(1339);
