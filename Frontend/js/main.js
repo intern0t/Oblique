@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const UserInput = $(".userInput");
-    const APIRoot = "http://obliquebackend.openode.io/";
+    const APIRoot = "http://109.236.83.48:443/";
     const FrontRoot = "http://o.prashant.me/#!"
 
     function isUrl(s) {
@@ -88,13 +88,4 @@ $(document).ready(function () {
         UserInput.val('');
         return false;
     });
-
-    // Copy functionality
-    // $("a.funcCopy").on('click', function(event){
-    //     event.preventDefault();
-    //     var clipboard = new ClipboardJS($(this));
-
-
-    //     return false;
-    // })
 });
