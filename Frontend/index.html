@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./css/main.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<title>Project Oblique (c) 2018</title>
+	<link rel="shortcut icon" href="images/icons8-cut-40.png">
+	<meta property="og:site_name" content="Oblique">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://o.prashant.me">
+	<meta property="og:title" content="Memorable URL Shortener">
+	<meta property="og:description" content="Shorten your long URLs in a unique yet memorable way.">
+	<meta name="twitter:site" content="@InvalidxSyntax">
+	<meta name="twitter:domain" content="prashant.me">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:url" content="http://prashant.me/">
+	<meta name="twitter:title" content="Memorable URL Shortener">
+	<meta name="twitter:description" content="Shorten your long URLs in a unique yet memorable way.">
+</head>
+
+<body>
+	<section class="hero is-light is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<form>
+					<div class="field">
+						<label class="label">
+							<span class="icon">
+								<i class="far fa-hand-scissors" aria-hidden="true"></i>
+							</span>
+							<a href="http://o.prashant.me">Project Oblique</a>
+						</label>
+						<div class="control has-icons-left">
+							<input class="input userInput" type="text" placeholder="Please enter your long URL that you wish to shorten .." autofocus required>
+							<span class="icon is-small is-left">
+								<i class="fas fa-link"></i>
+							</span>
+						</div>
+						<p class="help is-size-7">
+							<a href="https://github.com/intern0t/Oblique" target="_blank">
+								<b>Project Oblique</b>
+							</a> developed for private usage however, as the users grew,
+							<a href="https://prashant.me" target="_blank">
+								<b>I</b>
+							</a> decided to make it public.</p>
+					</div>
+					<div class="level">
+						<div class="level-left">
+							<div class="field is-grouped is-grouped-left">
+								<p class="control has-icons-left">
+									<a class="social twitter" href="https://twitter.com/InvalidxSyntax" target="_blank">
+										<i class="fab fa-twitter"></i>
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="social github" href="https://github.com/intern0t" target="_blank">
+										<i class="fab fa-github-alt"></i>
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="field is-grouped is-grouped-right">
+								<p class="control has-icons-left">
+									<a class="funcShorten button is-primary">
+										<i class="fas fa-cut"></i> &nbsp;Shorten
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="funcCopy button is-light" data-clipboard-action="copy" data-clipboard-target=".userInput">
+										<i class="fas fa-clipboard-list"></i> &nbsp;Copy
+									</a>
+								</p>
+								<p class="control has-icons-left">
+									<a class="funcClear button is-light">
+										<i class="fas fa-eraser"></i> &nbsp;Clear
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="notification is-size-7">
+							<p>
+								<center>Made with
+									<i class="fas fa-heart"></i> in Virgina.
+									<br/> Special thanks to
+									<a href="https://bulma.io/" target="_blank">BulmaCSS</a>,
+									<a href="https://nodejs.org/en/" target="_blank">NodeJS (Backend)</a>,
+									<a href="https://github.com/typicode/lowdb" target="_blank">LowDB</a>,
+									<a href="https://clipboardjs.com/">ClipboardJS</a>,
+									<a href="https://openode.io/" target="_blank">Openode</a> &
+									<a href="https://netlify.com/" target="_blank">Netlify</a>.
+								</center>
+							</p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	    crossorigin="anonymous"></script>
+	<script src="./js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+</body>
+
+</html>
