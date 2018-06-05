@@ -8,7 +8,6 @@
 var Express = require('express')
     , app = Express()
     , cors = require('cors')
-    , https = require('https')
     , request = require('request-promise')
     , Promise = require('bluebird')
     , bodyParser = require('body-parser')
@@ -17,6 +16,7 @@ var Express = require('express')
     , FileSync = require('lowdb/adapters/FileSync')
     , adapter = new FileSync('storage/oblique.json')
     , database = lowdb(adapter)
+    , morgan = require('morgan')
     , PORT = process.env.PORT || 1338;
 
 // Enabling CORS in our Express module.
@@ -26,19 +26,16 @@ var corsOptions = {
         if (allowedDomains.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            callback(new Error("Not allowed by CORS."));
+            callback("Not allowed by CORS.", false);
         }
     },
     methods: ['GET', 'POST'],
     optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
 
-// For HTTPS
-const options = {
-    key: fs.readFileSync("cert/my-key.pem"),
-    cert: fs.readFileSync("cert/chain.pem")
-};
+// Using CORS & Morgan
+app.use(cors(corsOptions));
+app.use(morgan('dev'));
 
 // Enabling POST data transfer.
 app.use(bodyParser.json());
@@ -227,6 +224,3 @@ app.get('/count', (req, res) => {
 app.listen(PORT, () => {
     console.log("Listening at *:", PORT);
 });
-
-// Listen at SSL port.
-https.createServer(options, app).listen(1339);

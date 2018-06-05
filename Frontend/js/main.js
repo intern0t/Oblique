@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const UserInput = $(".userInput");
-    const APIRoot = "http://109.236.83.48:443/";
+    const APIRoot = "http://109.236.83.48:1338/";
     const FrontRoot = "http://o.prashant.me/#!"
 
     function isUrl(s) {
