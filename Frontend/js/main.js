@@ -55,7 +55,7 @@ $(document).ready(function () {
             url: APIRoot + "count",
             method: "GET"
         }).done((resp) => {
-            console.log(resp);
+            $("span.totalCount").text("(" + resp.message +")");
         });
     };
 
