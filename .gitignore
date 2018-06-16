@@ -1,3 +1,5 @@
 Backend/node_modules/
 Backend/.openode
 Frontend/node_modules/
+node_modules/
+.vscode/

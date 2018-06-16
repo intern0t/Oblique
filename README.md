@@ -18,7 +18,6 @@ URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 
 * **POST** - `BACKEND/create`
     > `link` = string (long URL)
-
     > `auth` = string (`pms` by default for now)
 * **POST** - `BACKEND/find` 
     > `shortLink` = string (shortened URL id) 
