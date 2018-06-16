@@ -28,7 +28,7 @@ URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 ### Modules Used
 1. [LowDB](https://www.npmjs.com/package/lowdb)
 2. [Bluebird Promise](http://bluebirdjs.com)
-3. [Openode](https://openode.io) for hosting the backend.
+3. [~~Openode~~](https://openode.io) for ~~hosting~~ the backend, not anymore! :D
 
 ### Thanks to
 1. [Random Words API](https://nlp.fi.muni.cz/projekty/random_word/)
