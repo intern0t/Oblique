@@ -22,10 +22,11 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "google-spreadsheet": "^2.0.4",
     "https": "^1.0.0",
     "lowdb": "^1.0.0",
+    "md5": "^2.2.1",
     "morgan": "^1.9.0",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2"
   }
 }
