@@ -11,7 +11,6 @@ var Express = require("express"),
     request = require("request-promise"),
     Promise = require("bluebird"),
     bodyParser = require("body-parser"),
-    fs = require("fs"),
     lowdb = require("lowdb"),
     FileSync = require("lowdb/adapters/FileSync"),
     adapter = new FileSync("storage/oblique.json"),
@@ -21,12 +20,7 @@ var Express = require("express"),
     PORT = process.env.PORT || 1338;
 
 // Enabling CORS in our Express module.
-var allowedDomains = [
-    "127.0.0.1",
-    "localhost",
-    "http://o.prashant.me",
-    "https://o.prashant.me"
-];
+var allowedDomains = ["http://o.prashant.me", "https://o.prashant.me"];
 var corsOptions = {
     origin: (origin, callback) => {
         if (allowedDomains.indexOf(origin) !== -1) {
@@ -39,8 +33,7 @@ var corsOptions = {
     optionsSuccessStatus: 200
 };
 
-// Using CORS & Morgan
-app.use(cors(corsOptions));
+// Using Morgan to log our requests.
 app.use(morgan("dev"));
 
 // Enabling POST data transfer.
@@ -148,7 +141,9 @@ app.use("/short", (req, res, next) => {
             } else {
                 res.json({
                     error: true,
-                    message: "Sorry, you aren't allowed to do that."
+                    message:
+                        "Sorry, you aren't allowed to do that." +
+                        md5(Math.round(new Date().getTime() / 1000))
                 });
             }
         } else {
@@ -227,7 +222,7 @@ app.post("/short", (req, res) => {
 });
 
 // Create a new entry.
-app.use("/create", (req, res, next) => {
+app.use("/create", cors(allowedDomains), (req, res, next) => {
     return Promise.try(() => {
         if (!req.body.auth || !req.body.link) {
             return false;
@@ -257,7 +252,7 @@ app.use("/create", (req, res, next) => {
     });
 });
 
-app.post("/create", (req, res) => {
+app.post("/create", cors(allowedDomains), (req, res) => {
     return Promise.try(() => {
         // Before generating, check if an entry with same link already exists.
         var dbQuery = database
@@ -325,7 +320,7 @@ app.post("/create", (req, res) => {
 /**
  * Search and respond.
  */
-app.use("/find", (req, res, next) => {
+app.use("/find", cors(allowedDomains), (req, res, next) => {
     return Promise.try(() => {
         if (!req.body.shortLink) {
             res.json({
@@ -338,7 +333,7 @@ app.use("/find", (req, res, next) => {
     });
 });
 
-app.post("/find", (req, res) => {
+app.post("/find", cors(allowedDomains), (req, res) => {
     return Promise.try(() => {
         var dbQuery = database
             .get("links")
@@ -360,7 +355,7 @@ app.post("/find", (req, res) => {
 /**
  * Get total links in our database.
  */
-app.get("/count", (req, res) => {
+app.get("/count", cors(allowedDomains), (req, res) => {
     return Promise.try(() => {
         var dbQuery = database.get("count").value();
 
