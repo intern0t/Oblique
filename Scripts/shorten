@@ -1,0 +1,46 @@
+#!/bin/bash
+# sysinfo_page  - A script to communicate with Oblique backend and create shortened URLs.
+
+## Useless show off
+cat << "EOF"
+________ ___.   .__  .__                      
+\_____  \\_ |__ |  | |__| ________ __   ____  
+ /   |   \| __ \|  | |  |/ ____/  |  \_/ __ \ 
+/    |    \ \_\ \  |_|  < <_|  |  |  /\  ___/ 
+\_______  /___  /____/__|\__   |____/  \___  >
+        \/    \/            |__|           \/ 
+
+================================================
+Developer : Prashant Shrestha (www.prashant.me)
+================================================
+EOF
+
+## Arguments
+URLTOSHORTEN=""
+BASE_URL="http://mybox:1338/short" # mybox refers to my server's IP address.
+AUTH_KEY=""
+validurlregex='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+
+## Start
+echo "Please enter the long URL that you wish to shorten."
+read URLTOSHORTEN
+
+if [ ${#URLTOSHORTEN} -ge 30 ]; then
+	## Check if the provided URL is a valid URL.
+	if [[ $URLTOSHORTEN =~ $validurlregex ]]; then
+		## Seems valid, let's shorten the URL.
+        RESP=$(curl -s -d "auth=$AUTH_KEY&link=$URLTOSHORTEN" -X POST $BASE_URL) || exit
+		MODD="${RESP/o.prashant.me/shorted.tk}"
+		if [[ $string = *'"link": ""'* ]]; then
+			echo $MODD | grep -o -P '(?<="link":").*(?=")'
+		elif [[ $string = *'"shortened": "'* ]]; then
+			echo $MODD | grep -o -P '(?<="shortened":").*(?=")'
+		else
+			echo $MODD
+		fi
+	else
+		echo "Please provide a valid URL!"
+	fi
+else
+    echo "Sorry but, you are joking right?"
+fi

@@ -2,7 +2,7 @@
  *  Copyright (c) 2018, Prashant Shrestha
  *  Document    : index.js
  *  Date        : 2018-04-15
- *  Developer   : Prashant Shrestha
+ *  Developer   : Prashant Shrestha (www.prashant.me)
  */
 
 var Express = require("express"),

@@ -4,7 +4,7 @@
 ## Arguments
 URLTOSHORTEN=""
 BASE_URL="http://mybox:1338/short"
-AUTH_KEY="pms"
+AUTH_KEY=""
 
 if [ "$1" != "" ]; then
     URLTOSHORTEN="$1"
