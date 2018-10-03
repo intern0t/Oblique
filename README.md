@@ -20,7 +20,7 @@ URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 2. `shorten`
     > A bash script written to access the backend privately configured in order to generate different shortened link compared to the backend. Accepts `longurl` parameter as the first argument like `./shorten longurl` or simply execute the script `./shorten`.
 
-[![Demo](https://asciinema.org/a/52hHGbX15iW4242Q1fga7JO3A.png)](https://asciinema.org/a/52hHGbX15iW4242Q1fga7JO3A)
+![Demo of shorten](https://i.imgur.com/tTlyPnY.gif)
 
 # Backend
 ##### Endpoints
