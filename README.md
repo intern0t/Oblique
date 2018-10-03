@@ -12,6 +12,14 @@ URL Shortener that makes use of LowDB to store &amp; search for saved URLs.
 2. [ClipboardJS](https://clipboardjs.com)
 3. [Icons8](https://icons8.com/) for [favicon](https://icons8.com/icon/43015/cut).
 
+# Scripts
+> These scripts can help you connect and make direct calls to the API Endpoint, needs some configuration.
+1. `oblique.py`, `oblique.sh`
+    > Accepts `longurl` parameter, `./oblique.py longurl_here`.
+2. `shorten`
+    > A bash script written to access the backend privately configured in order to generate different shortened link compared to the backend. Accepts `longurl` parameter as the first argument like `./shorten longurl` or simply execute the script `./shorten`.
+
+
 # Backend
 ##### Endpoints
 >Let me use the term `BACKEND` to denote the server's root domain.
