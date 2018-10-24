@@ -1,12 +1,12 @@
-$(document).ready(function () {
+$(document).ready(function() {
     const UserInput = $(".userInput");
-    const APIRoot = "http://109.236.83.48:1338/";
-    const FrontRoot = "http://o.prashant.me/#!"
+    const APIRoot = "http://serv.prashant.me:1338/";
+    const FrontRoot = "http://o.prashant.me/#!";
 
     new ClipboardJS(".funcCopy");
 
     function isUrl(s) {
-        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
         return regexp.test(s);
     }
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
         }
 
         return payload;
-    }
+    };
 
     // Check for payload
     if (getURLParamters()) {
@@ -35,17 +35,17 @@ $(document).ready(function () {
             method: "POST",
             dataType: "json",
             data: { shortLink: _payload }
-        }).done((msg) => {
+        }).done(msg => {
             console.log(msg);
-            if(!msg.error){
+            if (!msg.error) {
                 window.location = msg.message.oLink;
             }
 
-            if(msg.error){
+            if (msg.error) {
                 console.log(msg.shortened);
-                if(msg.shortened && msg.link){
+                if (msg.shortened && msg.link) {
                     UserInput.val(msg.shortened);
-                }else{
+                } else {
                     UserInput.val(msg.message);
                 }
             }
@@ -56,22 +56,22 @@ $(document).ready(function () {
         $.ajax({
             url: APIRoot + "count",
             method: "GET"
-        }).done((resp) => {
+        }).done(resp => {
             $("span.totalCount").text("(" + resp.message + ")");
         });
     };
 
     TotalLinks();
 
-    $("a.funcShorten").on('click', function (event) {
+    $("a.funcShorten").on("click", function(event) {
         event.preventDefault();
         if (UserInput.val().length > 0 && isUrl(UserInput.val())) {
             $.ajax({
                 url: APIRoot + "create",
                 method: "POST",
-                dataType: 'json',
+                dataType: "json",
                 data: { auth: "pms", link: UserInput.val() }
-            }).done((msg) => {
+            }).done(msg => {
                 console.log(msg);
                 if (!msg.error) {
                     UserInput.val(msg.link.replace("https://", "http://"));
@@ -85,9 +85,9 @@ $(document).ready(function () {
         return false;
     });
 
-    $("a.funcClear").on('click', function (event) {
+    $("a.funcClear").on("click", function(event) {
         event.preventDefault();
-        UserInput.val('');
+        UserInput.val("");
         return false;
     });
 });
