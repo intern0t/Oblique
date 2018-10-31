@@ -17,7 +17,19 @@ var Express = require("express"),
     database = lowdb(adapter),
     morgan = require("morgan"),
     md5 = require("md5"),
+    http = require("http"),
+    https = require("https"),
+    fs = require("fs"),
+    helmet = require("helmet"),
     PORT = process.env.PORT || 1338;
+
+// HTTPS Options (Cert Path etc)
+const httpsOptions = {
+    key: fs.readFileSync("/etc/letsencrypt/live/serv.prashant.me/privkey.pem"),
+    cert: fs.readFileSync(
+        "/etc/letsencrypt/live/serv.prashant.me/fullchain.pem"
+    )
+};
 
 // Enabling CORS in our Express module.
 var allowedDomains = ["http://o.prashant.me", "https://o.prashant.me"];
@@ -35,6 +47,9 @@ var corsOptions = {
 
 // Using Morgan to log our requests.
 app.use(morgan("dev"));
+
+// Allow only HTTPS or nothing at all.
+app.use(helmet());
 
 // Enabling POST data transfer.
 app.use(bodyParser.json());
@@ -370,7 +385,14 @@ app.get("/count", cors(allowedDomains), (req, res) => {
     });
 });
 
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(httpsOptions, app);
+
 // Listen at the specified port.
-app.listen(PORT, () => {
-    console.log("Listening at *:", PORT);
+httpServer.listen(PORT, () => {
+    console.log("HTTP Server running at *:", PORT);
+});
+
+httpsServer.listen(443, () => {
+    console.log("HTTPS Server running on port 443");
 });

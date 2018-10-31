@@ -18,7 +18,7 @@ EOF
 ## Arguments
 URLTOSHORTEN=""
 SHORTED=""
-BASE_URL="http://mybox:1338/short" # mybox refers to my server's IP address.
+BASE_URL="https://serv.prashant.me:1338/short" # mybox refers to my server's IP address.
 AUTH_KEY=""
 validurlregex='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
 
