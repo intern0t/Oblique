@@ -1,7 +1,6 @@
 $(document).ready(function() {
     const UserInput = $(".userInput");
-    const APIRoot = "http://serv.prashant.me:1338/";
-    const FrontRoot = "http://o.prashant.me/#!";
+    const APIRoot = "https://serv.prashant.me/";
 
     new ClipboardJS(".funcCopy");
 
